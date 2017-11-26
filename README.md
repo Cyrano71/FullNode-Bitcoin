@@ -4,7 +4,7 @@ Implementation of a BlockChain Minor Node, and a Complete Fake Client Wallet :
 - Creation of Private and Public Key
 - Creation Script
 - Build a complete Transaction
-- Synchronization of the different Node
+- Synchronization of the differents Nodes
 - Proof of Work
 - Verification and update of the BlockChain
 - Create a maintainable and well organised code
@@ -19,8 +19,15 @@ You need to install Node JS and Python version 3.0 or more
 
 ### Installing
 
-Copy the repository. Go to the repository in your computer. Then open 4 terminals screens. 
+Copy the repository. Go to the repository in your computer. Then type the following :
 
+```
+sh settle.sh
+```
+
+### Run the Application
+
+Then open 4 terminals screens. 
 In the first screen type the following 
 
 ```
