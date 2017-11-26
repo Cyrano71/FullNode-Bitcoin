@@ -1,0 +1,94 @@
+'''
+eliptic curve equation : y*y = x*x*x + a*x + b
+I choose a simple curve a = 0, b = 3
+equation : y*y = x*x*x + b
+
+To add two point P (x1, y1) Q(x2, y2) => P + Q = R(x3, y3) 
+you have to use the following equation :
+1) Compute lambda = (y1 - y2) / (x1 - x2) for x1 != x2
+   if x1 = x2 compute lambda = 3 * x1 * x1 / 2 * y1
+
+2) Compute x3 = lambda * lambda - x1 - x2
+			y3 = lamda * (x3 - x2) + y1
+
+If you want to compute dP = P + P + .....
+you have to use the double and add method :
+So for example if you want to calculate 57P do the following :
+You start with the binary expansion of the scalar 5710=1110012
+57 in base 10 = 111001 base 2
+Then scanning right from left, for each bit you double and if the bit is set to 1
+you add.
+With elliptic curves it would look like this:
+
+Q←∞ = 0 (or the point at infinity since it is the identity element)
+Ptmp←P
+bin←[1,0,0,1,1,1] (i.e., the binary expansion of the scalar reversed)
+for i in bin
+	if i==1
+		Q+=Ptmp
+	Ptmp=Ptmp+Ptmp
+return Q
+
+The curve define by : y2 = x3 + Ax + B(modP)
+G a point in the curve
+n the integer such that n * G = 0
+
+P = 2 ** 256 - 2 ** 32 - 2 ** 9 - 2 ** 8 - 2 ** 7 - 2 ** 6 - 2 ** 4 - 1
+A = 0
+B = 7
+GX = 0x79BE667EF9DCBBAC55A06295CE870B07029BFCDB2DCE28D959F2815B16F81798
+GY = 0x483ADA7726A3C4655DA4FBFC0E1108A8FD17B448A68554199C47D08FFB10D4B8
+G = (GX, GY)
+N = 0XFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEBAAEDCE6AF48A03BBFD25E8CD0364141
+
+So we will use integer for the Bitcoin, so we will use the 
+Modular multiplicative inverse that is to say  :
+if you have a intger z and you want to calculate z.power(-1) you
+have to find x such that z.x = 1 [mod N] and then
+x = 1 / z => x = z.power(-1). So x is the inverse of z.
+
+To compute the x
+the idea is to use Extended Euclidean algorithms (used to find GCD of two numbers)
+that takes two integers ‘a’ and ‘b’, and finds their gcd and also find ‘x’ and ‘y’ such that
+	ax + by = gcd(a, b)  (gcd = grand commom divisor)
+
+	To find multiplicative inverse of ‘a’ under ‘m’, we put b = m in above formula. 
+	Since we know that a and m are relatively prime, we can put value of gcd as 1.
+
+	ax + my = 1 
+	ax - 1 = (-y)m 
+
+	Or we know that z  ≡ u (mod n) => z = k * n + u => z - u = k *n
+	So we can rewrite the equation above :
+	
+	ax = 1 + (-y)*m => ax ≡ 1 (mod m)
+
+So to find x such that ax ≡ 1 (mod m)
+you have to find x (and y) such that ax + my = gcd(a, m) = 1
+
+Or ax + my = gcd(a, m) = 1 is the  Bézout's identity that means that a and m
+are coprime
+
+So to find the inverse of a you have to show that a and m are coprime
+
+Algorithm to demonstrate that a and m is coprime
+In arithmetic and computer programming,
+the extended Euclidean algorithm is an extension to the Euclidean algorithm,
+and computes, in addition to the greatest common divisor of integers a and b,
+also the coefficients of Bézout's identity, which are integers x and y such that
+
+ax+by= gcd(a,b).
+see wikipedia for the algorithm
+
+Note that :
+To find −bmodN just keep adding N to −b 
+until the number is between 0 and N
+
+As an example, N=13,b=−27
+Add 13 to -27, you get -14, again you get -1, and again you get 12.
+So, −27mod13=12
+
+A bit more generally, you might want to realize that amodN=a+kNmodN
+a mod N = a + k N mod N for any k∈ℕ
+. That should help with your first question.
+'''
