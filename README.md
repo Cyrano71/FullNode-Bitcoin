@@ -79,7 +79,7 @@ sh diff.sh
 
 ## Authors
 
-* **Jehan-Gabriel Berthier** - *Initial work* - [JGdBB](https://github.com/JGdBB)
+* **Jehan-Gabriel de Brosses Berthier** - *Initial work* - [JGdBB](https://github.com/JGdBB)
 
 ## License
 
@@ -87,6 +87,9 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-* Inspiration : David Derosa’s 
-* Inspiration : Mastering Bitcoin of Andreas M. Antonopoulos
-* Inspiration : lhartikk/naivechain
+* Inspiration : David Derosa’s for the explications of how works a WalletClient
+* Inspiration : Mastering Bitcoin of Andreas M. Antonopoulos to understand the whole
+				system of the BlockChain
+* Inspiration : lhartikk/naivechain to start with a simple BlockChain in node JS
+* Inspiration : https://www.miximum.fr/blog/cryptographie-courbes-elliptiques-ecdsa/
+				to understand the elliptic curve if you speak french.
