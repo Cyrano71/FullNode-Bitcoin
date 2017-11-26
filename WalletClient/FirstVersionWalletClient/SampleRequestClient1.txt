@@ -1,0 +1,181 @@
+If you want to create a test use this code :
+
+var express = require("../node_modules/express");
+var bodyParser = require('../node_modules/body-parser');
+var WebSocket = require("../node_modules/ws");
+
+http_port = 6003;
+p2p_port = 3006;
+
+var initHttpServer = () => {
+    var app = express();
+    app.use(bodyParser.json());
+
+    app.get('/blocks', (req, res) => {})
+    app.get('/peers', (req, res) => {})
+    app.post('/addPeer', (req, res) => {});
+    app.post('/addTransaction', (req, res) => {
+    });
+    app.listen(http_port, () => console.log('Listening http on port: ' + http_port));
+};
+
+var initP2PServer = () => {
+    var server = new WebSocket.Server({port: p2p_port});
+    server.on('connection', ws => initConnection(ws));
+    console.log('listening websocket p2p port on: ' + p2p_port);
+};
+
+sockets = [];
+
+var initConnection = (ws) => {
+    console.log("New connection");
+    sockets.push(ws);
+    
+    ws.send(JSON.stringify({ type: 3,
+      data: '[{"index":1,"previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1465154715,"nonce":32526,"txnCount":1,"txns":[{"3bc":1,"cd9":-1}],"state":{"3bc":45,"cd9":55},"hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}]' }));
+
+/* 
+You can use a Message Handler and Error :
+    initMessageHandler(ws);
+    initErrorHandler(ws);
+    write(ws, queryChainLengthMsg());
+*/
+
+};
+
+initHttpServer();
+initP2PServer();
+
+And use one of this function  in initConnection
+/*
+BlockChain : Length = 0 to test handle Message
+	ws.send(JSON.stringify({'type' : 0}));
+*/
+
+/*
+BlockChain : Length = 1 to test the function processBlock
+    ws.send(JSON.stringify({ type: 3,
+        data: '[{"index":1,"previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1465154715,"nonce":32526,"txnCount":1,"txns":[{"3bc":1,"cd9":-1}],"state":{"3bc":45,"cd9":55},"hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}]' }));
+*/
+
+/* 
+BlockChain : Length = 3 to test the function replaceBlockChain
+    ws.send(JSON.stringify({ type: 2,
+    data : '[{"index":0,"previousHash":"0","timestamp":1465154705,"nonce":0,"txnCount":1,"txns":[{"3bc":-5,"cd9":5}],"state":{"3bc":45,"cd9":55},"hash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de"},{"index":1,"previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1465154715,"nonce":32526,"txnCount":1,"txns":[{"3bc":1,"cd9":-1}],"state":{"3bc":45,"cd9":55},"hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}, {"index":2,"previousHash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e","timestamp":1465154725,"nonce":30661,"txnCount":1,"txns":[{"3bc":3,"cd9":-3}],"state":{"3bc":45,"cd9":55},"hash":"13380302427e834d7b7da004798d7a0b7ec642460aaabf0c725f2c3addb6d14b"}]' }));
+*/
+
+/*
+
+BlockChain : Length = 1 to test the function isValidBlock and handleBlockchainResponse
+    ws.send(JSON.stringify({ type: 2,
+            data: '[{"index":0,"previousHash":"0","timestamp":1465154705,"nonce":0,"txnCount":1,"txns":[{"3bc":-5,"cd9":5}],"state":{"3bc":45,"cd9":55},"hash":"6bd8490c9d143d05da6d626c64cb90f443778faffc3ff1848ba327d97623deb3"}]' }));
+    ws.send(JSON.stringify({ type: 2,
+            data: '[{"index":1,"previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1465154715,"nonce":32526,"txnCount":1,"txns":[{"3bc":1,"cd9":-1}],"state":{"3bc":45,"cd9":55},"hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}]' }));
+*/
+
+/* These function are useful to test the BlockChain Fork
+    answerUser = 1 for the block 1 and = 2 for the block 2. It is a trigger
+
+     /*
+    if (answerUser == 1){
+        ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":1,\
+        "previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1507234186.921,"nonce":10196,"txnCount":1,"txns":[{"3bc":7,"cd9":-7}],"state":{"3bc":50,"cd9":50},\
+         "hash":"777c04182c0090cd7ff450169ff52d4a10917cca6f1af84353da6031bbfb516c"}}' }));
+    }
+    else{
+         ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":2,\
+        "previousHash":"7a6283bc7ea2c93abde9b8cd9552b9cc7c01f496a33fcaa911169b57fa3e71a0","timestamp":1507234220,"nonce":1820,"txnCount":1,"txns":[{"3bc":9,"cd9":-9}],"state":{"3bc":65,"cd9":35},\
+         "hash":"131c7acac3bbcacff6099b81ad14b72912a8eb2b7095c7f6a9f9879936eaa730"}}' }));
+    }*/
+
+    /*
+    if (answerUser == 1){
+        ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":1,\
+        "previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1507234186.921,"nonce":10196,"txnCount":1,"txns":[{"3bc":7,"cd9":-7}],"state":{"3bc":50,"cd9":50},\
+         "hash":"777c04182c0090cd7ff450169ff52d4a10917cca6f1af84353da6031bbfb516c"}}' }));
+    }
+    else{
+         ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":2,\
+        "previousHash":"777c04182c0090cd7ff450169ff52d4a10917cca6f1af84353da6031bbfb516c","timestamp":1507234188,"nonce":877,"txnCount":1,"txns":[{"3bc":8,"cd9":-8}],"state":{"3bc":65,"cd9":35},\
+         "hash":"ab2b206ea2a7301972e62d59c3cbe6c053bcd2637c6df92d83ed137f592eced7"}}' }));
+    }*/
+
+
+
+    /*
+    if (answerUser == 1){
+        ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":1,\
+        "previousHash":"4001c3ae567b0f8002d10d627a6295002084016de33db5f32bd70f43330202de","timestamp":1507234186.921,"nonce":443,"txnCount":4,"txns":[{"3bc":5,"cd9":-5},{"3bc":5,"cd9":-5},{"3bc":5,"cd9":-5},{"3bc":5,"cd9":-5}],"state":{"3bc":65,"cd9":35},\
+         "hash":"7a6283bc7ea2c93abde9b8cd9552b9cc7c01f496a33fcaa911169b57fa3e71a0"}}' }));
+    }
+    else{
+         ws.send(JSON.stringify({ type: 3,
+         data: '{"block" : {"index":2,\
+        "previousHash":"7a6283bc7ea2c93abde9b8cd9552b9cc7c01f496a33fcaa911169b57fa3e71a0","timestamp":1507234186.925,"nonce":1923,"txnCount":1,"txns":[{"3bc":1,"cd9":-1}],"state":{"3bc":65,"cd9":35},\
+         "hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}}' }));
+    }
+    */
+
+     /*
+    if (answerUser == 2){
+        ws.send(JSON.stringify({ type: 3,
+        data: '{"block" : {"index":2,\
+        "previousHash":"7a6283bc7ea2c93abde9b8cd9552b9cc7c01f496a33fcaa911169b57fa3e71a0",\
+        "timestamp":1507234186.925, "nonce":1923,"txnCount":1,\
+        "txns":[{"3bc":1,"cd9":-1},"state":{"3bc":65,"cd9":35},\
+        "hash":"e79e0bc026d4b0f7ba75dc38c4b9a075c00be27a5084b9b4835bf545a873761e"}}'}));
+    }*/
+
+/*
+You can also use this request to test the addPeer :
+
+    var options = {
+      url: 'http://localhost:6001/addPeer',
+      method: 'POST',
+      headers: {
+        'Content-type' : 'application/json'
+      },
+      body: JSON.stringify({peer : "ws://localhost:3006", http : 6003})
+    };
+
+    console.log("send request addPeer");
+    //console.log(options);
+
+    sleep(2000);
+
+    request(options, callback);
+
+*/
+
+/*
+You can use curl to test the integrity of the BlockChain
+exec('curl http://localhost:' + p2p_portdest + '/blocks',
+                (err, stdout, stderr) => {
+                if (err) {
+                    console.error(`exec error: ${err}`);
+                    return;
+                }
+                console.log(`${stdout}`);
+           });
+exec('curl http://localhost:' + p2p_portdest2 + '/blocks',
+                (err, stdout, stderr) => {
+                if (err) {
+                    console.error(`exec error: ${err}`);
+                    return;
+                }
+                console.log(`${stdout}`);
+           });
+exec('curl http://localhost:' + p2p_portdest3 + '/blocks',
+                (err, stdout, stderr) => {
+                if (err) {
+                    console.error(`exec error: ${err}`);
+                    return;
+                }
+                console.log(`${stdout}`);
+           });
+*/
