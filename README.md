@@ -15,7 +15,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need to install Node JS
+You need to install Node JS and Python version 3.0 or more
 
 ### Installing
 
