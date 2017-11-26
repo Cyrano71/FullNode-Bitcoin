@@ -2,20 +2,23 @@
 
 ## Shakespeare: Timon of Athens.
 
-“Gold, yellow, glittering, precious gold! 
-Thus much of this, will make black white; foul, fair; 
-Wrong, right; base, noble; old, young; coward, valiant. 
-... What this, you gods? Why, this 
-Will lug your priests and servants from your sides; 
-Pluck stout men’s pillows from below their heads; 
+“Gold? yellow, glittering, precious gold? No, gods,
+I am no idle votarist: roots, you clear heavens! 
+Thus much of this will make black white, foul fair, 
+Wrong right, base noble, old young, coward valiant. 
+Ha, you gods! why this? what this, you gods? Why, this 
+Will lug your priests and servants from your sides,
+Pluck stout men's pillows from below their heads: 
 This yellow slave 
-Will knit and break religions; bless the accurs’d; 
-Make the hoar leprosy ador’d; place thieves, 
-And give them title, knee and approbation, 
-With senators on the bench; this is it, 
-That makes the wappen’d widow wed again: 
-... Come damned earth, 
-Though common whore of mankind.”
+Will knit and break religions, bless the accursed, 
+Make the hoar leprosy adored, place thieves 
+And give them title, knee and approbation
+With senators on the bench: this is it 
+That makes the wappen'd widow wed again; 
+She, whom the spital-house and ulcerous sores 
+Would cast the gorge at, this embalms and spices 
+To the April day again. Come, damned earth,
+Thou common whore of mankind”
 
 ## MyWork
 
