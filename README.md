@@ -1,5 +1,24 @@
 # BitCoin-BlockChain
 
+## Shakespeare: Timon of Athens.
+
+“Gold, yellow, glittering, precious gold! 
+Thus much of this, will make black white; foul, fair; 
+Wrong, right; base, noble; old, young; coward, valiant. 
+... What this, you gods? Why, this 
+Will lug your priests and servants from your sides; 
+Pluck stout men’s pillows from below their heads; 
+This yellow slave 
+Will knit and break religions; bless the accurs’d; 
+Make the hoar leprosy ador’d; place thieves, 
+And give them title, knee and approbation, 
+With senators on the bench; this is it, 
+That makes the wappen’d widow wed again: 
+... Come damned earth, 
+Though common whore of mankind.”
+
+## MyWork
+
 Implementation of a BlockChain Minor Node, and a Complete Fake Client Wallet :
 - Creation of Private and Public Key
 - Creation Script
