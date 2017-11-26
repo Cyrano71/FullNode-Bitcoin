@@ -7,6 +7,7 @@ Implementation of a BlockChain Minor Node, and a Complete Fake Client Wallet :
 - Synchronization of the differents Nodes
 - Proof of Work
 - Verification and update of the BlockChain
+- Manage the creatopn of a Fork BlockChain
 - Create a maintainable and well organised code
 
 ## Getting Started
@@ -60,7 +61,7 @@ Theses last command will send 4 transactions to the three Minor Node
 ## Integrity of BlockChain
 
 To send a request to the Minor Node to retreive the BlockChain
-and check it the BlockChain are the same in the 3 node do the following
+and check if the BlockChain are the same in the 3 node do the following
 when you are in the folder WalletClient
 
 ```
