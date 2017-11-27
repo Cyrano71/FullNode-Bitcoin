@@ -1,5 +1,5 @@
-const {creationTransactionInput} = require("../MinorTxns/CreateSampleScriptBlock");
-const {creationTransactionOutput} = require("../MinorTxns/CreateSampleScriptBlock");
+const {creationTransactionInput} = require("../MinerTxns/CreateSampleScriptBlock");
+const {creationTransactionOutput} = require("../MinerTxns/CreateSampleScriptBlock");
 const {ALICE} = require("../Constants/constant");
 const {BOB} = require("../Constants/constant");
 const {ALICETOBOB} = require("../Constants/constant");

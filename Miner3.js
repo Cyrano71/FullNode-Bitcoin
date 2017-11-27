@@ -1,7 +1,7 @@
 var CryptoJS = require("crypto-js");
 var express = require("express");
 
-const {getGenesisBlock} = require("./MinorBlock/ClassBlock");
+const {getGenesisBlock} = require("./MinerBlock/ClassBlock");
 
 /*
 We can't change a object by reference in node js
@@ -16,20 +16,20 @@ var DockerChain = [BlockChain];
 var Origin = getGenesisBlock(BlockChain);
 BlockChain.push(Origin);
 
-const { initApp } = require("./MinorHttpServer/toolsHttpServer");
-const { writeBlockChains } = require("./MinorHttpServer/toolsHttpServer");
-const {writeDocker} = require("./MinorHttpServer/toolsHttpServer");
-const { addPeer } = require("./MinorHttpServer/toolsHttpServer");
-const {addTxns} = require("./MinorHttpServer/toolsHttpServer");
-const {writePortSockets} = require("./MinorHttpServer/toolsHttpServer");
-const {gatherMoneyClient} = require("./MinorHttpServer/toolsHttpServer");
+const { initApp } = require("./MinerHttpServer/toolsHttpServer");
+const { writeBlockChains } = require("./MinerHttpServer/toolsHttpServer");
+const {writeDocker} = require("./MinerHttpServer/toolsHttpServer");
+const { addPeer } = require("./MinerHttpServer/toolsHttpServer");
+const {addTxns} = require("./MinerHttpServer/toolsHttpServer");
+const {writePortSockets} = require("./MinerHttpServer/toolsHttpServer");
+const {gatherMoneyClient} = require("./MinerHttpServer/toolsHttpServer");
 /*
 If you want to create a other node, you have just to change the declaration below
 create a file settingServer3 in MinorHttpServer
 */
 
-var constSetting = require("./MinorHttpServer/settingServer3");
-const {initialPeersSockets} = require("./MinorHttpServer/settingServer3");
+var constSetting = require("./MinerHttpServer/settingServer3");
+const {initialPeersSockets} = require("./MinerHttpServer/settingServer3");
 
 /*
 Use the socket technologie because It is more efficient to exchange infomation
@@ -37,9 +37,9 @@ between the Peers
 */
 
 var WebSocket = require("ws");
-const {initConnection} = require("./MinorSockets/SocketInit");
-const {connectToPeers} = require("./MinorSockets/SocketInit");
-const {processMessage} = require("./MinorSockets/toolsSocket");
+const {initConnection} = require("./MinerSockets/SocketInit");
+const {connectToPeers} = require("./MinerSockets/SocketInit");
+const {processMessage} = require("./MinerSockets/toolsSocket");
 
 /*
 We need to create a Event Emitter because initConnection of the Socket is
@@ -79,7 +79,7 @@ The stateProcess Obct allow us to kill our current process which does the proof
 of work and update our BlockChain
 */
 
-var Process = require("./MinorBlock/ClassStatusProcess");
+var Process = require("./MinerBlock/ClassStatusProcess");
 
 var sockets = [];
 var portSockets = [];
@@ -146,9 +146,9 @@ if (initialPeersSockets.length != 0){
 }
 
 /*
-var ClassMinor = require("./MinorBlock/ClassBlock");
-var tools = require("./MinorBlock/HashTools");
-var toolsHttp = require("./MinorHttpServer/toolsHttpServer");
+var ClassMinor = require("./MinerBlock/ClassBlock");
+var tools = require("./MinerBlock/HashTools");
+var toolsHttp = require("./MinerHttpServer/toolsHttpServer");
 */
 
 /*
