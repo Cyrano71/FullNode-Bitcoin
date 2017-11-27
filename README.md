@@ -17,8 +17,7 @@ With senators on the bench: this is it
 That makes the wappen'd widow wed again; 
 She, whom the spital-house and ulcerous sores 
 Would cast the gorge at, this embalms and spices 
-To the April day again. Come, damned earth,
-Thou common whore of mankind”
+To the April day again. Come, damned earth !”
 
 ## MyWork
 
