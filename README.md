@@ -21,7 +21,7 @@ To the April day again. Come, damned earth !”
 
 ## MyWork
 
-Implementation of a BlockChain Minor Node, and a Complete Fake Client Wallet :
+Implementation of a BlockChain Miner Node, and a Complete Fake Client Wallet :
 - Creation of Private and Public Key
 - Creation Script
 - Build a complete Transaction
@@ -53,19 +53,19 @@ Then open 4 terminals screens.
 In the first screen type the following 
 
 ```
-node Minor1.js
+node Miner1.js
 ```
 
 And repeat for the second screen 
 
 ```
-node Minor2.js
+node Miner2.js
 ```
 
 And then for the third screen 
 
 ```
-node Minor3.js
+node Miner3.js
 ```
 
 For the last one go to the folder WalletClient then  
