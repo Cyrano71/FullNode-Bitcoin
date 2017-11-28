@@ -77,11 +77,11 @@ node WalletClient1.js 3
 node WalletClient1.js 4
 ```
 
-Theses last command will send 4 transactions to the three Minor Node
+Theses last command will send 4 transactions to the three Miner Node
 
 ## Integrity of BlockChain
 
-To send a request to the Minor Node to retreive the BlockChain
+To send a request to the Miner Node to retreive the BlockChain
 and check if the BlockChain are the same in the 3 node do the following
 when you are in the folder WalletClient
 
