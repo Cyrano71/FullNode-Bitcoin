@@ -23,6 +23,7 @@ const { addPeer } = require("./MinerHttpServer/toolsHttpServer");
 const {addTxns} = require("./MinerHttpServer/toolsHttpServer");
 const {writePortSockets} = require("./MinerHttpServer/toolsHttpServer");
 const {gatherMoneyClient} = require("./MinerHttpServer/toolsHttpServer");
+
 /*
 If you want to create a other node, you have just to change the declaration below
 create a file settingServer3 in MinerHttpServer
@@ -40,15 +41,6 @@ var WebSocket = require("ws");
 const {initConnection} = require("./MinerSockets/SocketInit");
 const {connectToPeers} = require("./MinerSockets/SocketInit");
 const {processMessage} = require("./MinerSockets/toolsSocket");
-
-/*
-We need to create a Event Emitter because initConnection of the Socket is
-in SocketInit and InitMessageHandler is in this file.
-Or we need to keep InitMessageHandler in this file (Miner1.js) because it needs to be
-feeding by the var BlockChain, Docker etc... Or these var are in this file.
-So we create a EventEmiter in this file we send this event in SocketInit and
-in Socket Init the function initConnection will launch a emitEvent
-*/
 
 var EventEmitter = require('events').EventEmitter;
 var EventInitMessageHandler = new EventEmitter();
@@ -83,6 +75,7 @@ var Process = require("./MinerBlock/ClassStatusProcess");
 
 var sockets = [];
 var portSockets = [];
+
 /* 
 You can also use httpPort to save the port of the other peers
 because by default it is only the port socket wich is save
@@ -96,11 +89,6 @@ var stateProcess = new Process.StatusProcess(listTransaction,
                                             constSetting.p2p_port,portSockets, 
                                             sockets,
                                             DockerChain);
-
-/*
-Same thing that for Socket Init. We need to keep initHttpServer in this file
-because this function needs to be feeding with variables Docker, BlockChain etc..
-*/
 
 var initHttpServer = (httpPort) => {
     app = initApp();
