@@ -37,7 +37,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You need to install Node JS and Python version 3.0 or more
+You need to install Node JS and Python. 
+I have used a Mac OS's laptop to create this application.
 
 ### Installing
 
