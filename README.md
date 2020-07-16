@@ -99,10 +99,6 @@ Then type :
 sh diff.sh
 ```
 
-## Authors
-
-* **Jehan-Gabriel de Brosses Berthier** - *Initial work* - [JGdBB](https://github.com/JGdBB)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
