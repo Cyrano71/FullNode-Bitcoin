@@ -6,7 +6,7 @@ C'est un projet que j'ai commencé pour mieux comprendre :
 - la proof of work
 - la signature des transactions
 - la création, mise à jour et validation de la chaine
-- le mécanisme clé public/clé privée
+- le mécanisme clé publique/clé privée
 
 ## Shakespeare: Timon of Athens.
 
